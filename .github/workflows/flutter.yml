@@ -1,0 +1,37 @@
+name: Flutter CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      # This step sets up Flutter based on the specified version.
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: 'stable' # you can use: stable, beta, dev, or specific version like '1.22.1'
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run Flutter format
+        run: flutter format --set-exit-if-changed .
+
+      - name: Run Flutter analyzer
+        run: flutter analyze .
+
+      - name: Run Flutter tests
+        run: flutter test
+
+      
+      - name: Run tests with coverage
+        run: flutter test --coverage
+      - name: Report coverage to codecov
+        uses: codecov/codecov-action@v1
