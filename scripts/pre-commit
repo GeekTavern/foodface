@@ -1,0 +1,9 @@
+#!/bin/sh
+
+echo 'Running Formatter'
+
+dart format . 
+
+echo 'Running flutter analyse' 
+
+flutter analyze .
