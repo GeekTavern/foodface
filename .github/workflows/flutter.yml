@@ -22,7 +22,7 @@ jobs:
         run: flutter pub get
 
       - name: Run Flutter format
-        run: flutter format --set-exit-if-changed .
+        run: dart format --set-exit-if-changed .
 
       - name: Run Flutter analyzer
         run: flutter analyze .
@@ -30,8 +30,8 @@ jobs:
       - name: Run Flutter tests
         run: flutter test
 
-      
       - name: Run tests with coverage
         run: flutter test --coverage
+        
       - name: Report coverage to codecov
         uses: codecov/codecov-action@v1
